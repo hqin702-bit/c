@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON ÉDITO — 高端时装通勤 | The Modern Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Noto+Serif+SC:wght@200;300;400;500&family=Noto+Sans+SC:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0a0a0a;
+  --ink:#1a1a1a;
+  --char:#2b2b2b;
+  --gray:#6e6e6e;
+  --gray-l:#9a9a9a;
+  --line:#dcdcdc;
+  --paper:#f4f3f1;
+  --paper-2:#eceae6;
+  --white:#ffffff;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost','Noto Sans SC',sans-serif;
+  background:var(--white);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--black);color:var(--white)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--paper)}
+::-webkit-scrollbar-thumb{background:var(--char)}
+
+.serif{font-family:'Cormorant Garamond',serif}
+.serif-sc{font-family:'Noto Serif SC',serif}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:80px;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  mix-blend-mode:difference;
+  transition:all .5s var(--ease);
+}
+#nav.solid{
+  mix-blend-mode:normal;
+  height:64px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:500;letter-spacing:.32em;
+  color:var(--white);text-decoration:none;
+  transition:color .3s;
+}
+#nav.solid .logo{color:var(--black)}
+.logo b{font-weight:600}
+.nav-menu{display:flex;gap:42px;list-style:none}
+.nav-menu a{
+  font-size:.72rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;position:relative;padding:4px 0;
+  transition:color .3s;
+}
+#nav.solid .nav-menu a{color:var(--ink)}
+.nav-menu a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:currentColor;transition:width .4s var(--ease);
+}
+.nav-menu a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:24px}
+.nav-ic{background:none;border:none;cursor:pointer;color:var(--white);transition:color .3s;padding:4px}
+#nav.solid .nav-ic{color:var(--ink)}
+.nav-ic svg{width:20px;height:20px;display:block}
+
+/* ── HERO ── */
+.hero{
+  height:100vh;min-height:680px;position:relative;
+  display:flex;align-items:flex-end;
+  background:linear-gradient(180deg,#1c1c1c 0%,#0a0a0a 100%);
+  overflow:hidden;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 30%,rgba(255,255,255,.06) 0%,transparent 55%),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.012) 0 2px,transparent 2px 60px),
+    linear-gradient(135deg,#262626 0%,#0e0e0e 60%,#000 100%);
+}
+.hero-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.55) 100%);
+}
+.hero-figure{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);
+  width:280px;height:440px;opacity:.5;
+}
+.hero-content{position:relative;z-index:2;padding:0 48px 80px;max-width:1100px}
+.hero-kicker{
+  font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);margin-bottom:28px;
+  opacity:0;animation:rise 1s .2s var(--ease) forwards;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,9vw,7rem);font-weight:300;line-height:.98;
+  color:var(--white);letter-spacing:.01em;margin-bottom:30px;
+  opacity:0;animation:rise 1.1s .4s var(--ease) forwards;
+}
+.hero-title em{font-style:italic;font-weight:400}
+.hero-sub{
+  font-size:.95rem;font-weight:300;letter-spacing:.04em;line-height:1.8;
+  color:rgba(255,255,255,.7);max-width:440px;margin-bottom:44px;
+  opacity:0;animation:rise 1s .6s var(--ease) forwards;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;
+  padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.4);
+  transition:gap .3s,border-color .3s;
+  opacity:0;animation:rise 1s .8s var(--ease) forwards;
+}
+.hero-cta:hover{gap:22px;border-color:var(--white)}
+.hero-meta{
+  position:absolute;bottom:80px;right:48px;z-index:2;text-align:right;
+  opacity:0;animation:fade 1.4s 1s forwards;
+}
+.hero-meta span{display:block;font-size:.66rem;letter-spacing:.24em;color:rgba(255,255,255,.4);line-height:2}
+
+/* ── MARQUEE ── */
+.marquee{
+  background:var(--black);color:var(--white);
+  padding:18px 0;overflow:hidden;white-space:nowrap;
+  border-top:1px solid #222;border-bottom:1px solid #222;
+}
+.marquee-track{display:inline-flex;animation:scroll-x 28s linear infinite}
+.marquee-track span{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.1rem;letter-spacing:.1em;padding:0 36px;
+  color:rgba(255,255,255,.85);
+}
+.marquee-track span::after{content:'·';margin-left:36px;color:var(--gray)}
+
+/* ── SECTION FRAME ── */
+.sec{padding:120px 48px}
+.sec-inner{max-width:1280px;margin:0 auto}
+.sec-head{margin-bottom:64px}
+.sec-head.center{text-align:center}
+.eyebrow{
+  font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gray);margin-bottom:18px;display:block;
+}
+.sec-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3.4rem);font-weight:300;line-height:1.1;
+  color:var(--ink);letter-spacing:.01em;
+}
+.sec-title em{font-style:italic}
+.sec-desc{
+  font-size:.92rem;font-weight:300;line-height:1.9;color:var(--gray);
+  max-width:480px;margin-top:22px;
+}
+.center .sec-desc{margin-left:auto;margin-right:auto}
+
+/* ── EDITORIAL SPLIT ── */
+.editorial{background:var(--paper)}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.edit-visual{
+  aspect-ratio:4/5;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#2a2a2a,#0c0c0c);
+  display:flex;align-items:center;justify-content:center;
+}
+.edit-visual.light{background:linear-gradient(150deg,#e8e6e2,#cfccc6)}
+.edit-figure{width:46%;height:70%;opacity:.42}
+.edit-visual.light .edit-figure{opacity:.55}
+.edit-tag{
+  position:absolute;top:28px;left:28px;
+  font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+}
+.edit-visual.light .edit-tag{color:var(--gray)}
+.edit-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px;background:var(--white);
+}
+.edit-text.dark{background:var(--black)}
+.edit-num{
+  font-family:'Cormorant Garamond',serif;font-size:.9rem;font-style:italic;
+  color:var(--gray-l);margin-bottom:24px;letter-spacing:.1em;
+}
+.edit-text.dark .edit-num{color:#777}
+.edit-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;line-height:1.2;color:var(--ink);
+  margin-bottom:24px;
+}
+.edit-text.dark .edit-h{color:var(--white)}
+.edit-p{font-size:.9rem;font-weight:300;line-height:1.95;color:var(--gray);margin-bottom:32px}
+.edit-text.dark .edit-p{color:rgba(255,255,255,.6)}
+.edit-link{
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;align-self:flex-start;
+  border-bottom:1px solid var(--ink);padding-bottom:6px;
+  transition:opacity .3s;
+}
+.edit-text.dark .edit-link{color:var(--white);border-color:var(--white)}
+.edit-link:hover{opacity:.55}
+
+/* ── COLLECTION GRID ── */
+.collection{background:var(--white)}
+.filter{
+  display:flex;justify-content:center;gap:8px;margin-bottom:56px;flex-wrap:wrap;
+}
+.filter button{
+  background:none;border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gray);padding:10px 22px;transition:color .3s;position:relative;
+}
+.filter button::after{
+  content:'';position:absolute;left:50%;bottom:2px;width:0;height:1px;
+  background:var(--black);transition:all .3s var(--ease);transform:translateX(-50%);
+}
+.filter button:hover{color:var(--ink)}
+.filter button.on{color:var(--black)}
+.filter button.on::after{width:20px}
+.looks{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.look{position:relative;cursor:pointer;overflow:hidden;background:var(--paper-2)}
+.look-img{aspect-ratio:3/4;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .9s var(--ease)}
+.look:hover .look-img{transform:scale(1.04)}
+.look-fig{width:42%;height:64%;opacity:.4;transition:opacity .5s}
+.look:hover .look-fig{opacity:.55}
+.look-overlay{
+  position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.72));
+  opacity:0;transition:opacity .5s var(--ease);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+}
+.look:hover .look-overlay{opacity:1}
+.look-cat{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.look-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:6px;line-height:1.2}
+.look-price{font-size:.8rem;font-weight:300;letter-spacing:.08em;color:rgba(255,255,255,.85)}
+.look-btn{
+  margin-top:18px;align-self:flex-start;
+  background:var(--white);color:var(--black);border:none;cursor:pointer;
+  font-family:'Jost',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:11px 22px;transition:all .3s;
+}
+.look-btn:hover{background:var(--black);color:var(--white);box-shadow:0 0 0 1px var(--white)}
+.look-flag{
+  position:absolute;top:18px;left:18px;z-index:2;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--white);color:var(--black);padding:5px 10px;
+}
+
+/* ── PHILOSOPHY STRIP ── */
+.ethos{background:var(--black);color:var(--white);text-align:center;padding:140px 48px;position:relative;overflow:hidden}
+.ethos-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1.8rem,4.5vw,3.2rem);line-height:1.3;letter-spacing:.01em;
+  max-width:900px;margin:0 auto;position:relative;z-index:2;
+}
+.ethos-quote span{color:var(--gray-l)}
+.ethos-by{
+  margin-top:36px;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);position:relative;z-index:2;
+}
+.ethos-bg{
+  position:absolute;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:34vw;color:rgba(255,255,255,.018);top:50%;left:50%;
+  transform:translate(-50%,-50%);white-space:nowrap;user-select:none;z-index:1;
+}
+
+/* ── SERVICES ── */
+.services{background:var(--paper)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc{background:var(--paper);padding:56px 40px;transition:background .4s}
+.svc:hover{background:var(--white)}
+.svc-ic{width:40px;height:40px;margin-bottom:28px;color:var(--ink)}
+.svc-ic svg{width:100%;height:100%}
+.svc-h{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:14px}
+.svc-p{font-size:.85rem;font-weight:300;line-height:1.9;color:var(--gray)}
+
+/* ── NEWSLETTER ── */
+.news{background:var(--white);text-align:center;padding:120px 48px}
+.news-inner{max-width:560px;margin:0 auto}
+.news-form{display:flex;gap:0;margin-top:40px;border-bottom:1px solid var(--ink)}
+.news-form input{
+  flex:1;border:none;background:none;outline:none;
+  font-family:'Jost',sans-serif;font-size:.9rem;letter-spacing:.05em;color:var(--ink);
+  padding:14px 4px;
+}
+.news-form input::placeholder{color:var(--gray-l)}
+.news-form button{
+  background:none;border:none;cursor:pointer;
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);
+  padding:0 8px;transition:opacity .3s;
+}
+.news-form button:hover{opacity:.5}
+
+/* ── FOOTER ── */
+footer{background:var(--black);color:var(--white);padding:90px 48px 40px}
+.foot-top{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:60px;border-bottom:1px solid #222}
+.foot-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:500;letter-spacing:.28em;margin-bottom:20px}
+.foot-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--gray-l);margin-bottom:28px;line-height:1.5}
+.foot-addr{font-size:.78rem;font-weight:300;line-height:2;color:var(--gray)}
+.foot-col h5{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray-l);margin-bottom:22px}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:13px}
+.foot-col a{font-size:.82rem;font-weight:300;color:var(--gray);text-decoration:none;transition:color .3s;letter-spacing:.02em}
+.foot-col a:hover{color:var(--white)}
+.foot-bot{max-width:1280px;margin:32px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.foot-bot p{font-size:.68rem;color:#555;letter-spacing:.05em}
+.foot-social{display:flex;gap:20px}
+.foot-social a{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .3s}
+.foot-social a:hover{color:var(--white)}
+
+/* ── CART DRAWER ── */
+.drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:2000;opacity:0;visibility:hidden;transition:all .4s}
+.drawer-bg.on{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;width:440px;max-width:100%;height:100vh;background:var(--white);z-index:2001;transform:translateX(100%);transition:transform .5s var(--ease);display:flex;flex-direction:column}
+.drawer.on{transform:translateX(0)}
+.drawer-h{display:flex;justify-content:space-between;align-items:center;padding:28px 36px;border-bottom:1px solid var(--line)}
+.drawer-h h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;letter-spacing:.1em}
+.drawer-h button{background:none;border:none;cursor:pointer;color:var(--ink)}
+.drawer-items{flex:1;overflow-y:auto;padding:24px 36px}
+.empty{text-align:center;padding:80px 0;color:var(--gray-l)}
+.empty svg{width:40px;height:40px;opacity:.3;margin-bottom:16px}
+.empty p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem}
+.ci{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.ci-img{width:72px;height:92px;background:var(--paper-2);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.ci-img svg{width:30px;height:30px;opacity:.3}
+.ci-info{flex:1}
+.ci-cat{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-l);margin-bottom:4px}
+.ci-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:var(--ink);margin-bottom:10px}
+.ci-qty{display:flex;align-items:center;gap:12px}
+.ci-qty button{width:24px;height:24px;border:1px solid var(--line);background:none;cursor:pointer;font-size:.9rem;color:var(--ink);transition:all .2s}
+.ci-qty button:hover{border-color:var(--ink)}
+.ci-qty span{font-size:.85rem;min-width:18px;text-align:center}
+.ci-right{text-align:right}
+.ci-price{font-size:.9rem;font-weight:400;color:var(--ink)}
+.ci-rm{background:none;border:none;cursor:pointer;font-size:.66rem;letter-spacing:.1em;color:var(--gray-l);margin-top:10px;transition:color .2s}
+.ci-rm:hover{color:var(--black)}
+.drawer-f{padding:28px 36px;border-top:1px solid var(--line);background:var(--paper)}
+.drawer-tot{display:flex;justify-content:space-between;margin-bottom:20px}
+.drawer-tot span:first-child{font-size:.82rem;letter-spacing:.05em;color:var(--gray)}
+.drawer-tot span:last-child{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ink)}
+.drawer-btn{width:100%;padding:16px;background:var(--black);color:var(--white);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;transition:opacity .3s}
+.drawer-btn:hover{opacity:.85}
+
+/* ── QUICK VIEW MODAL ── */
+.qv-bg{position:fixed;inset:0;background:rgba(10,10,10,.6);backdrop-filter:blur(6px);z-index:3000;opacity:0;visibility:hidden;transition:all .4s;display:flex;align-items:center;justify-content:center;padding:24px}
+.qv-bg.on{opacity:1;visibility:visible}
+.qv{background:var(--white);max-width:880px;width:100%;display:grid;grid-template-columns:1fr 1fr;position:relative;max-height:88vh;overflow:hidden}
+.qv-close{position:absolute;top:18px;right:18px;background:none;border:none;cursor:pointer;color:var(--ink);z-index:2}
+.qv-img{background:linear-gradient(150deg,#2a2a2a,#0c0c0c);display:flex;align-items:center;justify-content:center;min-height:420px}
+.qv-img svg{width:38%;opacity:.45}
+.qv-body{padding:56px 48px;display:flex;flex-direction:column;justify-content:center}
+.qv-cat{font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
+.qv-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--ink);margin-bottom:12px;line-height:1.15}
+.qv-price{font-size:1.1rem;font-weight:300;color:var(--ink);margin-bottom:24px}
+.qv-desc{font-size:.86rem;font-weight:300;line-height:1.9;color:var(--gray);margin-bottom:28px}
+.qv-sizes{display:flex;gap:8px;margin-bottom:28px}
+.qv-sizes button{width:42px;height:42px;border:1px solid var(--line);background:none;cursor:pointer;font-size:.78rem;color:var(--ink);transition:all .2s}
+.qv-sizes button:hover,.qv-sizes button.on{border-color:var(--black);background:var(--black);color:var(--white)}
+.qv-add{padding:15px;background:var(--black);color:var(--white);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;transition:opacity .3s}
+.qv-add:hover{opacity:.85}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:980px){
+  #nav{padding:0 24px}
+  .nav-menu{display:none}
+  .sec{padding:80px 24px}
+  .ethos{padding:90px 24px}
+  .edit-grid{grid-template-columns:1fr}
+  .edit-text{padding:48px 32px}
+  .edit-visual{aspect-ratio:16/11}
+  .looks{grid-template-columns:repeat(2,1fr)}
+  .svc-grid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr;gap:32px}
+  .qv{grid-template-columns:1fr;max-height:92vh;overflow-y:auto}
+  .qv-img{min-height:260px}
+  .hero-meta{display:none}
+}
+@media(max-width:560px){
+  .looks{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  .drawer{width:100vw}
+  .hero-content{padding:0 24px 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">MAISON <b>ÉDITO</b></a>
+  <ul class="nav-menu">
+    <li><a href="#editorial">Editorial</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#ethos">Maison</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="index.html" style="color:inherit">律政定制 Bespoke ↗</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-ic" aria-label="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
+    <button class="nav-ic" id="cartOpen" aria-label="cart" style="position:relative">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span id="cartCount" style="position:absolute;top:-6px;right:-8px;background:currentColor;color:var(--white);font-size:.5rem;width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;font-family:'Jost',sans-serif">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-img">
+    <svg class="hero-figure" viewBox="0 0 200 320" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1">
+      <path d="M70 40 Q100 28 130 40 L150 95 L168 105 L160 240 L40 240 L32 105 L50 95 Z"/>
+      <path d="M100 40 L100 240"/>
+      <path d="M88 60 L70 100 L100 92"/><path d="M112 60 L130 100 L100 92"/>
+      <path d="M40 240 L48 312 L88 312 L96 244"/><path d="M160 240 L152 312 L112 312 L104 244"/>
+      <circle cx="100" cy="120" r="1.6"/><circle cx="100" cy="145" r="1.6"/><circle cx="100" cy="170" r="1.6"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <p class="hero-kicker">Autumn / Winter 2026 — The Professional Edit</p>
+    <h1 class="hero-title">Tailored for<br>the <em>Modern</em> Day</h1>
+    <p class="hero-sub">为当代职场人士打造的高端时装通勤系列。结构、廓形与质地的极简对话——从清晨会议到入夜社交，一套衣橱，从容一日。</p>
+    <a href="#collection" class="hero-cta">探索系列 Explore the Edit
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 6h18M13 1l5 5-5 5"/></svg>
+    </a>
+  </div>
+  <div class="hero-meta">
+    <span>Paris · Milan · Shanghai</span>
+    <span>Ready-to-Wear</span>
+    <span>Est. MMXXVI</span>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>The Modern Professional</span><span>Ready-to-Wear</span><span>Tailored Minimalism</span><span>Workwear Redefined</span>
+    <span>The Modern Professional</span><span>Ready-to-Wear</span><span>Tailored Minimalism</span><span>Workwear Redefined</span>
+  </div>
+</div>
+
+<!-- EDITORIAL -->
+<section class="sec editorial" id="editorial" style="padding:0">
+  <div class="edit-grid">
+    <div class="edit-visual">
+      <span class="edit-tag">Look 01 — The Tailored Suit</span>
+      <svg class="edit-figure" viewBox="0 0 200 320" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1">
+        <path d="M68 44 Q100 30 132 44 L152 100 L170 110 L160 250 L40 250 L30 110 L48 100 Z"/>
+        <path d="M100 44 L100 250"/><path d="M86 62 L66 105 L100 96"/><path d="M114 62 L134 105 L100 96"/>
+        <rect x="118" y="150" width="26" height="16"/>
+      </svg>
+    </div>
+    <div class="edit-text dark">
+      <div class="edit-num">01 — Suiting</div>
+      <h2 class="edit-h serif">权力套装<br>The Power Suit</h2>
+      <p class="edit-p">利落的肩线，收束的腰身。意大利精纺羊毛构筑的廓形，是会议室里无需言语的存在感。黑，是最克制也最有力的宣言。</p>
+      <a href="#collection" class="edit-link">查看西装系列</a>
+    </div>
+  </div>
+  <div class="edit-grid">
+    <div class="edit-text">
+      <div class="edit-num">02 — Knitwear</div>
+      <h2 class="edit-h serif">柔性力量<br>Soft Authority</h2>
+      <p class="edit-p">羊绒与真丝的混纺针织，柔软贴合却不失结构。介于正式与休闲之间的灰调，是通勤日里最聪明的选择——温柔，亦是一种专业。</p>
+      <a href="#collection" class="edit-link">查看针织系列</a>
+    </div>
+    <div class="edit-visual light">
+      <span class="edit-tag">Look 02 — The Knit Edit</span>
+      <svg class="edit-figure" viewBox="0 0 200 320" fill="none" stroke="rgba(60,60,60,.5)" stroke-width="1">
+        <path d="M64 50 Q100 36 136 50 L150 96 L150 250 L50 250 L50 96 Z"/>
+        <path d="M64 50 L40 92 L52 100"/><path d="M136 50 L160 92 L148 100"/>
+        <path d="M82 50 Q100 64 118 50"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="sec collection" id="collection">
+  <div class="sec-inner">
+    <div class="sec-head center rv">
+      <span class="eyebrow">The Collection</span>
+      <h2 class="sec-title">通勤系列 <em>Ready-to-Wear</em></h2>
+      <p class="sec-desc">十二件构筑现代职业衣橱的核心单品。每一件都为真实的工作日而设计——从单品到成套，自由组合。</p>
+    </div>
+    <div class="filter rv d1" id="filter">
+      <button class="on" data-f="all">全部 All</button>
+      <button data-f="suit">西装套装 Suiting</button>
+      <button data-f="knit">针织 Knitwear</button>
+      <button data-f="shirt">衬衫 Shirts</button>
+      <button data-f="outer">外套 Outerwear</button>
+      <button data-f="dress">连衣裙 Dresses</button>
+    </div>
+    <div class="looks rv d2" id="looks"></div>
+  </div>
+</section>
+
+<!-- ETHOS -->
+<section class="ethos" id="ethos">
+  <div class="ethos-bg">Édito</div>
+  <blockquote class="ethos-quote">
+    “真正的优雅，<span>从不喧哗。</span><br>它存在于剪裁的精度，<br>与穿着者的<span>从容之间。</span>”
+  </blockquote>
+  <p class="ethos-by">— The Maison Édito Philosophy</p>
+</section>
+
+<!-- SERVICES -->
+<section class="sec services">
+  <div class="sec-inner">
+    <div class="sec-head center rv">
+      <span class="eyebrow">The Service</span>
+      <h2 class="sec-title">尊享体验 <em>The Experience</em></h2>
+    </div>
+    <div class="svc-grid rv d1">
+      <div class="svc">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 6h18M7 12h10M10 18h4"/></svg></div>
+        <h3 class="svc-h serif">私人造型顾问</h3>
+        <p class="svc-p">一对一专属造型师，依据你的身形、职业场景与个人风格，构筑完整通勤衣橱方案。</p>
+      </div>
+      <div class="svc">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2 2 19h20L12 2Z"/><path d="M12 8v6"/></svg></div>
+        <h3 class="svc-h serif">免烫精修工艺</h3>
+        <p class="svc-p">每件成衣享免费精修服务，确保肩线、袖长、裤长贴合身形，如高定般合身。</p>
+      </div>
+      <div class="svc">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 14h8"/></svg></div>
+        <h3 class="svc-h serif">全球门店配送</h3>
+        <p class="svc-p">巴黎、米兰、上海三大旗舰店，支持门店自提与全球配送，七日内送达。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news">
+  <div class="news-inner rv">
+    <span class="eyebrow">Newsletter</span>
+    <h2 class="sec-title" style="margin-bottom:10px">先于他人，<em>预见风格</em></h2>
+    <p class="sec-desc" style="margin:0 auto">订阅 Maison Édito，第一时间获取新季系列、私享活动与造型灵感。</p>
+    <div class="news-form">
+      <input type="email" placeholder="您的电子邮箱 Your email address">
+      <button onclick="subscribe()">订阅 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<!-- SISTER BRAND BAND -->
+<section style="background:var(--paper-2);padding:70px 48px;text-align:center;border-top:1px solid var(--line)">
+  <div style="max-width:680px;margin:0 auto">
+    <span class="eyebrow">Our Sister Maison</span>
+    <h2 class="sec-title" style="font-size:clamp(1.6rem,4vw,2.6rem);margin-bottom:14px">庭外 OutCourt <em>× 裁度 Bespoke Measure</em></h2>
+    <p class="sec-desc" style="margin:0 auto 32px">寻求更进一步的专属定制？我们的姊妹品牌为律政精英提供全场景高定服饰——从量体到成衣，每一件都独一无二。</p>
+    <a href="index.html" class="hero-cta" style="color:var(--ink);border-color:var(--ink)">进入律政定制站 Enter Bespoke
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 6h18M13 1l5 5-5 5"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">MAISON ÉDITO</div>
+      <p class="foot-tag">Tailored for the Modern Day.</p>
+      <p class="foot-addr">高端时装通勤 · Ready-to-Wear<br>Paris · Milan · Shanghai<br>contact@maisonedito.com</p>
+    </div>
+    <div class="foot-col">
+      <h5>Collection</h5>
+      <ul>
+        <li><a href="#">西装套装</a></li>
+        <li><a href="#">针织系列</a></li>
+        <li><a href="#">衬衫</a></li>
+        <li><a href="#">外套</a></li>
+        <li><a href="#">连衣裙</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Maison</h5>
+      <ul>
+        <li><a href="#">品牌哲学</a></li>
+        <li><a href="#">造型顾问</a></li>
+        <li><a href="#">门店地址</a></li>
+        <li><a href="#">可持续承诺</a></li>
+        <li><a href="#">招贤纳士</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Client Care</h5>
+      <ul>
+        <li><a href="#">尺码指南</a></li>
+        <li><a href="#">配送与退换</a></li>
+        <li><a href="#">精修服务</a></li>
+        <li><a href="#">会员尊享</a></li>
+        <li><a href="#">联系我们</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <p>© 2026 MAISON ÉDITO. All Rights Reserved.</p>
+    <div class="foot-social">
+      <a href="#">Instagram</a><a href="#">WeChat</a><a href="#">小红书</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-h">
+    <h4>购物袋 Shopping Bag</h4>
+    <button id="drawerClose" aria-label="close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-f">
+    <div class="drawer-tot"><span>合计 Total</span><span id="drawerTotal">¥0</span></div>
+    <button class="drawer-btn" onclick="checkout()">结算 Proceed to Checkout</button>
+  </div>
+</aside>
+
+<!-- QUICK VIEW -->
+<div class="qv-bg" id="qvBg">
+  <div class="qv">
+    <button class="qv-close" id="qvClose"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="qv-img" id="qvImg"></div>
+    <div class="qv-body">
+      <div class="qv-cat" id="qvCat"></div>
+      <h3 class="qv-name serif" id="qvName"></h3>
+      <div class="qv-price" id="qvPrice"></div>
+      <p class="qv-desc" id="qvDesc"></p>
+      <div class="qv-sizes" id="qvSizes"></div>
+      <button class="qv-add" id="qvAdd">加入购物袋 Add to Bag</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+var FIG = '<svg class="look-fig" viewBox="0 0 200 320" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1"><path d="M68 44 Q100 30 132 44 L152 100 L170 110 L160 250 L40 250 L30 110 L48 100 Z"/><path d="M100 44 L100 250"/><path d="M86 62 L66 105 L100 96"/><path d="M114 62 L134 105 L100 96"/></svg>';
+var FIG_LIGHT = '<svg style="width:38%;opacity:.45" viewBox="0 0 200 320" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1"><path d="M68 44 Q100 30 132 44 L152 100 L170 110 L160 250 L40 250 L30 110 L48 100 Z"/><path d="M100 44 L100 250"/><path d="M86 62 L66 105 L100 96"/><path d="M114 62 L134 105 L100 96"/></svg>';
+
+var PRODUCTS = [
+  {id:1, cat:"suit", flag:"New", name:"双排扣羊毛西装", en:"Double-Breasted Wool Blazer", price:4980, desc:"意大利精纺羊毛，结构性双排扣廓形，收腰剪裁勾勒利落线条。会议室里的无声力量。"},
+  {id:2, cat:"suit", flag:"", name:"高腰直筒西裤", en:"High-Waist Tailored Trousers", price:2280, desc:"垂坠感羊毛混纺，高腰直筒版型拉伸比例，搭配西装或针织皆宜。"},
+  {id:3, cat:"knit", flag:"", name:"羊绒高领针织衫", en:"Cashmere Turtleneck", price:2680, desc:"100%蒙古羊绒，柔软亲肤的高领设计，灰调内敛而高级。"},
+  {id:4, cat:"knit", flag:"Best", name:"真丝混纺开衫", en:"Silk-Blend Cardigan", price:3180, desc:"羊绒与真丝混纺，光泽含蓄，廓形利落，介于正式与休闲的智慧之选。"},
+  {id:5, cat:"shirt", flag:"", name:"府绸经典衬衫", en:"Poplin Classic Shirt", price:1480, desc:"埃及长绒棉府绸，挺括有型，白衬衫是衣橱永恒的语言。"},
+  {id:6, cat:"shirt", flag:"", name:"真丝衬衫连衣", en:"Silk Shirt Dress", price:2980, desc:"垂坠真丝，衬衫式连衣设计，一件成型，通勤与晚宴之间从容切换。"},
+  {id:7, cat:"outer", flag:"New", name:"长款羊毛大衣", en:"Long Wool Coat", price:6880, desc:"双面羊毛，及踝长款廓形，极简翻领，是冬日通勤的标志性轮廓。"},
+  {id:8, cat:"outer", flag:"", name:"风衣外套", en:"Belted Trench Coat", price:5280, desc:"防水棉质华达呢，经典系带风衣，永不过时的法式优雅。"},
+  {id:9, cat:"dress", flag:"", name:"廓形连衣裙", en:"Structured Midi Dress", price:3480, desc:"硬挺质地，建筑感廓形，及膝中长款，一件诠释极简主义美学。"},
+  {id:10, cat:"dress", flag:"Best", name:"无袖直筒长裙", en:"Sleeveless Column Dress", price:3880, desc:"垂坠醋酸面料，无袖直筒剪裁，黑色长裙是晚间活动的安全牌。"},
+  {id:11, cat:"suit", flag:"", name:"单排扣西装套装", en:"Single-Breasted Suit Set", price:7280, desc:"外套加西裤成套，灰调精纺羊毛，现代职业女性的完整铠甲。"},
+  {id:12, cat:"knit", flag:"", name:"罗纹针织连衣裙", en:"Ribbed Knit Dress", price:2880, desc:"弹性罗纹针织，修身廓形，柔软贴合一日舒适，优雅不费力。"}
+];
+
+var SIZES = ["XS","S","M","L","XL"];
+var cart = [];
+var curFilter = "all";
+var qvCurrent = null;
+var qvSize = "M";
+
+function fmt(n){ return "¥" + n.toLocaleString(); }
+
+// ── RENDER LOOKS ──
+function renderLooks(){
+  var grid = document.getElementById("looks");
+  var list = curFilter === "all" ? PRODUCTS : PRODUCTS.filter(function(p){return p.cat===curFilter;});
+  grid.innerHTML = list.map(function(p){
+    return '<article class="look" data-id="'+p.id+'">' +
+      (p.flag ? '<span class="look-flag">'+p.flag+'</span>' : '') +
+      '<div class="look-img">'+FIG+'</div>' +
+      '<div class="look-overlay">' +
+        '<div class="look-cat">'+catLabel(p.cat)+'</div>' +
+        '<div class="look-name">'+p.name+'</div>' +
+        '<div class="look-price">'+fmt(p.price)+'</div>' +
+        '<button class="look-btn" onclick="openQV('+p.id+');event.stopPropagation()">快速查看 Quick View</button>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+}
+
+function catLabel(c){
+  var m = {suit:"Suiting 西装", knit:"Knitwear 针织", shirt:"Shirts 衬衫", outer:"Outerwear 外套", dress:"Dresses 连衣裙"};
+  return m[c] || c;
+}
+
+// ── FILTER ──
+document.getElementById("filter").addEventListener("click", function(e){
+  if(e.target.tagName !== "BUTTON") return;
+  var btns = document.querySelectorAll("#filter button");
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove("on");
+  e.target.classList.add("on");
+  curFilter = e.target.getAttribute("data-f");
+  renderLooks();
+});
+
+// ── QUICK VIEW ──
+function openQV(id){
+  var p = PRODUCTS.find(function(x){return x.id===id;});
+  if(!p) return;
+  qvCurrent = p;
+  qvSize = "M";
+  document.getElementById("qvImg").innerHTML = FIG_LIGHT;
+  document.getElementById("qvCat").textContent = catLabel(p.cat);
+  document.getElementById("qvName").innerHTML = p.name + "<br><span style='font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.1rem;color:#9a9a9a'>" + p.en + "</span>";
+  document.getElementById("qvPrice").textContent = fmt(p.price);
+  document.getElementById("qvDesc").textContent = p.desc;
+  var sz = document.getElementById("qvSizes");
+  sz.innerHTML = SIZES.map(function(s){
+    return '<button class="'+(s==="M"?"on":"")+'" onclick="pickSize(this,\''+s+'\')">'+s+'</button>';
+  }).join("");
+  document.getElementById("qvBg").classList.add("on");
+}
+function pickSize(el, s){
+  var btns = el.parentNode.querySelectorAll("button");
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove("on");
+  el.classList.add("on");
+  qvSize = s;
+}
+document.getElementById("qvClose").addEventListener("click", function(){ document.getElementById("qvBg").classList.remove("on"); });
+document.getElementById("qvBg").addEventListener("click", function(e){ if(e.target.id==="qvBg") document.getElementById("qvBg").classList.remove("on"); });
+document.getElementById("qvAdd").addEventListener("click", function(){
+  if(qvCurrent){ addToCart(qvCurrent.id, qvSize); document.getElementById("qvBg").classList.remove("on"); }
+});
+
+// ── CART ──
+function addToCart(id, size){
+  var p = PRODUCTS.find(function(x){return x.id===id;});
+  var ex = cart.find(function(c){return c.id===id && c.size===size;});
+  if(ex){ ex.qty++; } else { cart.push({id:id, size:size||"M", qty:1, name:p.name, en:p.en, price:p.price, cat:p.cat}); }
+  renderCart();
+  openDrawer();
+}
+function changeQty(idx, d){
+  cart[idx].qty += d;
+  if(cart[idx].qty <= 0) cart.splice(idx,1);
+  renderCart();
+}
+function removeItem(idx){ cart.splice(idx,1); renderCart(); }
+
+function renderCart(){
+  var count = cart.reduce(function(s,c){return s+c.qty;}, 0);
+  var total = cart.reduce(function(s,c){return s+c.price*c.qty;}, 0);
+  var badge = document.getElementById("cartCount");
+  badge.textContent = count;
+  badge.style.display = count>0 ? "flex" : "none";
+  document.getElementById("drawerTotal").textContent = fmt(total);
+  var box = document.getElementById("drawerItems");
+  if(cart.length===0){
+    box.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><p>您的购物袋是空的</p></div>';
+    return;
+  }
+  box.innerHTML = cart.map(function(c, i){
+    return '<div class="ci">' +
+      '<div class="ci-img"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.6)" stroke-width="1"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/></svg></div>' +
+      '<div class="ci-info">' +
+        '<div class="ci-cat">'+catLabel(c.cat)+' · '+c.size+'</div>' +
+        '<div class="ci-name">'+c.name+'</div>' +
+        '<div class="ci-qty"><button onclick="changeQty('+i+',-1)">−</button><span>'+c.qty+'</span><button onclick="changeQty('+i+',1)">+</button></div>' +
+      '</div>' +
+      '<div class="ci-right"><div class="ci-price">'+fmt(c.price*c.qty)+'</div><button class="ci-rm" onclick="removeItem('+i+')">移除</button></div>' +
+    '</div>';
+  }).join("");
+}
+
+function openDrawer(){ document.getElementById("drawerBg").classList.add("on"); document.getElementById("drawer").classList.add("on"); }
+function closeDrawer(){ document.getElementById("drawerBg").classList.remove("on"); document.getElementById("drawer").classList.remove("on"); }
+document.getElementById("cartOpen").addEventListener("click", openDrawer);
+document.getElementById("drawerClose").addEventListener("click", closeDrawer);
+document.getElementById("drawerBg").addEventListener("click", closeDrawer);
+
+function checkout(){
+  if(cart.length===0){ alert("您的购物袋是空的"); return; }
+  var total = cart.reduce(function(s,c){return s+c.price*c.qty;}, 0);
+  alert("感谢您的选购！\n\n合计 " + fmt(total) + "\n\n即将跳转至结算页面...");
+}
+function subscribe(){
+  var input = document.querySelector(".news-form input");
+  if(input.value && input.value.indexOf("@")>-1){ alert("感谢订阅 Maison Édito。"); input.value=""; }
+  else { alert("请输入有效的电子邮箱地址。"); }
+}
+
+// ── NAV SCROLL ──
+window.addEventListener("scroll", function(){
+  document.getElementById("nav").classList.toggle("solid", window.scrollY > 80);
+});
+
+// ── REVEAL ──
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add("in"); });
+}, {threshold:0.12});
+document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+
+// ── INIT ──
+renderLooks();
+renderCart();
+</script>
+</body>
+</html>
